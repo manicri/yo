@@ -1,0 +1,446 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Quicksand', sans-serif; /* Fuente más suave y redondeada */
+    overflow: hidden;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    overflow: hidden;
+    background-color: #87CEEB; 
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: -2;
+}
+
+#lives-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #F47C98; /* Rosado más suave y romántico */
+    border: 3px solid #FFE169; /* Amarillo pastel */
+    box-shadow: 0 5px 15px rgba(244, 124, 152, 0.3);
+    z-index: 10;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#lives-container.hidden {
+    display: none;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+}
+
+.screen {
+    display: none;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(244, 124, 152, 0.3);
+    border: 4px solid #FFE169; 
+    text-align: center;
+    max-width: 650px;
+    width: 90%;
+    max-height: calc(100vh - 96px);
+    box-sizing: border-box;
+    overflow-y: auto;
+    animation: fadeIn 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive; /* Letra cursiva de amor */
+    font-size: 42px;
+    color: #F47C98; 
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(255, 225, 105, 0.5); /* Sombra suave */
+}
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px;
+    color: #F47C98; 
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 19px;
+    color: #4A4A4A;
+    font-weight: 500;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+
+
+@media (max-width: 480px) {
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.option-btn {
+    background-color: white;
+    color: #F47C98;
+    border: 2px solid #FFE169;
+    padding: 15px;
+    font-size: 17px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    transition: all 0.3s;
+    margin-top: 0;
+}
+
+.option-btn:hover:not(:disabled) {
+    background-color: #FFF0F4;
+    box-shadow: 0 0 10px rgba(255, 225, 105, 0.8);
+    transform: translateY(-2px);
+}
+
+.option-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.option-btn:disabled {
+    cursor: default;
+}
+
+.option-btn.correct {
+    background-color: #2ecc71 !important;
+    color: white !important;
+    border-color: #27ae60 !important;
+    transform: scale(1.05);
+}
+
+.option-btn.incorrect {
+    background-color: #e74c3c !important;
+    color: white !important;
+    border-color: #c0392b !important;
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+button#start-btn, button#restart-btn {
+    background-color: #F47C98; 
+    color: white;
+    border: 2px solid #FFE169; 
+    padding: 12px 30px;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    margin-top: 10px;
+}
+
+button#continue-level-btn {
+    background-color: #F47C98;
+    color: white;
+    border: 2px solid #FFE169;
+    padding: 12px 30px;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+button#continue-level-btn:hover {
+    background-color: #F89EB3;
+    box-shadow: 0 0 12px rgba(255, 225, 105, 0.8);
+}
+
+.level-photo {
+    display: block;
+    width: min(100%, 460px);
+    max-height: 58vh;
+    margin: 22px auto;
+    object-fit: contain;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+button#start-btn:hover, button#restart-btn:hover {
+    background-color: #F89EB3; 
+    box-shadow: 0 0 12px rgba(255, 225, 105, 0.8); 
+}
+
+button#start-btn:active, button#restart-btn:active {
+    transform: scale(0.95);
+}
+
+#feedback-msg {
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 20px;
+    min-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- ESTILOS PARA EMOJIS DE APPLE (IMÁGENES) --- */
+.apple-emoji {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: -0.2em;
+    display: inline-block;
+}
+
+.apple-emoji-small {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.1em;
+    display: inline-block;
+}
+
+.heart {
+    margin-top: 30px;
+}
+
+.apple-emoji-large {
+    width: 80px;
+    height: 80px;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.2); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+    60% { transform: scale(1); }
+}
+
+/* --- ESTILOS PARA LA CARTA ANTIGUA --- */
+.letter-paper {
+    background-color: #f4e3c5;
+    /* Textura de papel arrugado (imagen en base64 o url externa confiable) */
+    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png'); 
+    padding: 24px 28px;
+    border-radius: 3px;
+    margin-bottom: 0;
+    position: relative;
+    /* Efecto de bordes quemados/antiguos y sombra */
+    box-shadow: inset 0 0 40px rgba(139, 69, 19, 0.4), 0 10px 20px rgba(0,0,0,0.4);
+    
+    /* Animación de despliegue como pergamino/carta */
+    transform-origin: top center;
+    animation: unfoldLetter 1.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+/* Pseudo-elemento para hacer unas pequeñas dobleces en el papel */
+.letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 48%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+}
+
+@keyframes unfoldLetter {
+    0% { transform: perspective(500px) rotateX(-90deg); opacity: 0; }
+    100% { transform: perspective(500px) rotateX(0deg); opacity: 1; }
+}
+
+.handwriting {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(20px, 2.4vw, 26px);
+    color: #3b2b1b; /* Color sepia/tinta oscura */
+    line-height: 1.32;
+    text-align: left;
+    text-shadow: 0px 0px 1px rgba(59, 43, 27, 0.2);
+    margin: 10px 0;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 20px;
+    font-size: clamp(23px, 2.8vw, 29px);
+}
+
+/* --- CONTROLES DE NAVEGACIÓN --- */
+#nav-container {
+    position: fixed;
+    bottom: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: clamp(16px, 8vw, 120px);
+    gap: 20px;
+    z-index: 10;
+}
+
+#nav-container.hidden {
+    display: none;
+}
+
+.nav-btn {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #F47C98;
+    border: 2px solid #FFE169;
+    padding: 7px 17px;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(244, 124, 152, 0.2);
+}
+
+@media (max-width: 600px) {
+    body, html {
+        overflow: hidden;
+    }
+
+    .game-container {
+        padding: 10px;
+        align-items: center;
+    }
+
+    .screen {
+        width: 100%;
+        max-height: calc(100vh - 74px);
+        padding: 22px 18px;
+        border-width: 3px;
+        border-radius: 16px;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .letter-paper {
+        padding: 18px 16px;
+    }
+
+    .handwriting {
+        font-size: 20px;
+        line-height: 1.25;
+        margin: 7px 0;
+    }
+
+    .signature {
+        margin-top: 14px;
+        font-size: 23px;
+    }
+
+    #lives-container {
+        top: 8px;
+        right: 8px;
+        padding: 6px 11px;
+        font-size: 16px;
+    }
+
+    #nav-container {
+        bottom: 7px;
+        padding-left: 12px;
+        gap: 10px;
+    }
+
+    .nav-btn {
+        padding: 6px 14px;
+        font-size: 13px;
+    }
+
+    .option-btn {
+        padding: 11px;
+        font-size: 15px;
+    }
+
+
+    .level-photo {
+        max-height: 45vh;
+        margin: 14px auto;
+    }
+}
+
+.nav-btn:hover:not(:disabled) {
+    background-color: #FFF0F4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 225, 105, 0.5);
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f0f0f0;
+    color: #aaa;
+    border-color: #ddd;
+    box-shadow: none;
+}

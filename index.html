@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Sorpresa Especial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="video-background">
+        <!-- Puedes usar un video local descargado o un link directo de un archivo mp4 -->
+        <video id="bg-video" autoplay loop muted playsinline>
+            <source src="fondo.mp4" type="video/mp4">
+        </video>
+    </div>
+    <!-- Capa oscura para que el juego resalte sobre el video -->
+    <div class="video-overlay"></div>
+
+    <audio id="bg-music" loop>
+        <source
+            src="https://cdn.pixabay.com/download/audio/2022/02/22/audio_c8bfb73f83.mp3?filename=cheerful-ukulele-112877.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <!-- Indicador de Vidas -->
+    <div id="lives-container" class="hidden">
+        Vidas: <span id="lives-hearts"></span>
+    </div>
+
+    <div class="game-container">
+        <!-- Pantalla de Inicio -->
+        <div id="start-screen" class="screen active">
+            <h1>Tengo una sorpresa para usted... <img
+                    src="https://em-content.zobj.net/source/apple/354/sunflower_1f33b.png" class="apple-emoji"
+                    alt="girasol"></h1>
+            <p>Pero primerooooo, tiene que pasar unas pequeñas pruebas. Tienes que estar preparada</p>
+            <button id="start-btn">Empieza</button>
+        </div>
+
+        <!-- Pantalla de la Carta -->
+        <div id="letter-screen" class="screen" style="background: transparent; box-shadow: none; border: none;">
+            <div class="letter-paper">
+                <p class="handwriting">Corazón mío...</p>
+                <p class="handwriting">Antes de empezar esta pequeña aventura, quería recordarte lo mucho que significas
+                    para mí y lo especial que eres en mi vida.</p>
+                <p class="handwriting">He hecho esto con mucho amor para usted, es algo la cual me ha tomado bastante
+                    tiempito pero valió la pena la espera, quiero que sepas que siempre te voy a tener presente en mi
+                    vida con mucho mucho mucho amorrrrr.</p>
+                <p class="handwriting signature">Con todo mi amor, para la mujer de mi vida.</p>
+            </div>
+        </div>
+
+        <!-- Pantalla de Niveles -->
+        <div id="level-screen" class="screen">
+            <h2 id="level-title">Nivel 1</h2>
+            <p id="question-text">Pregunta de prueba</p>
+
+            <div id="options-container" class="options-grid">
+                <!-- Los botones de opciones se generarán aquí -->
+            </div>
+
+
+
+            <p id="feedback-msg"></p>
+        </div>
+
+        <!-- Foto que aparece al superar cada nivel -->
+        <div id="level-photo-screen" class="screen photo-screen">
+            <h2 id="photo-title">¡Nivel superado!</h2>
+            <img id="level-photo" class="level-photo" src="" alt="Un recuerdo especial de nosotros">
+            <p id="photo-message">Un recuerdo inolvidable de nosotros </p><img
+                src="https://em-content.zobj.net/source/apple/354/red-heart_2764-fe0f.png" class="apple-emoji-large"
+                alt="corazón">
+            <button id="continue-level-btn">Continuar</button>
+        </div>
+
+        <!-- Pantalla Final (Éxito) -->
+        <div id="end-screen" class="screen">
+            <h1>¡Felicidades! <img src="https://em-content.zobj.net/source/apple/354/party-popper_1f389.png"
+                    class="apple-emoji" alt="fiesta"></h1>
+            <p>Wowww Girasolsito ha pasado todos estos niveles, felicidades mi romi bella.</p>
+            <p class="surprise-text">
+            <div class="heart">
+                <img src="https://em-content.zobj.net/source/apple/354/red-heart_2764-fe0f.png"
+                    class="apple-emoji-large" alt="corazón">
+            </div>
+        </div>
+
+        <!-- Pantalla Game Over -->
+        <div id="gameover-screen" class="screen">
+            <h1>¡Oh no! <img src="https://em-content.zobj.net/source/apple/354/broken-heart_1f494.png"
+                    class="apple-emoji" alt="corazón roto"></h1>
+            <p>Te has quedado sin vidas...</p>
+            <p>Pero no te preocupes, en el amor siempre hay segundas oportunidades:)</p>
+            <button id="restart-btn">Volver a intentar</button>
+        </div>
+    </div>
+
+    <!-- Controles de Navegación -->
+    <div id="nav-container" class="hidden">
+        <button id="btn-back" class="nav-btn"> Atrás</button>
+        <button id="btn-next" class="nav-btn">Siguiente </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+Guarda aquí una foto de ustedes por cada nivel con estos nombres exactos:
+
+nivel-1.jpg
+nivel-2.jpg
+nivel-3.jpg
+nivel-4.jpg
+nivel-5.jpg
+
+Puedes usar fotos JPG. Si tus fotos están en PNG o WEBP, cambia la extensión
+correspondiente en la propiedad "photo" de cada nivel dentro de script.js.
