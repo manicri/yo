@@ -52,6 +52,7 @@ const startScreen = document.getElementById('start-screen');
 const letterScreen = document.getElementById('letter-screen');
 const levelScreen = document.getElementById('level-screen');
 const levelPhotoScreen = document.getElementById('level-photo-screen');
+const finalLetterScreen = document.getElementById('final-letter-screen');
 const endScreen = document.getElementById('end-screen');
 const gameoverScreen = document.getElementById('gameover-screen');
 
@@ -112,6 +113,12 @@ btnNext.addEventListener('click', () => {
         goToStep(1);
         return;
     }
+    // Desde la carta final, va a la pantalla de éxito.
+    if (currentStep === 6) {
+        if (maxStepUnlocked < 7) maxStepUnlocked = 7;
+        goToStep(7);
+        return;
+    }
     if (currentStep < maxStepUnlocked) goToStep(currentStep + 1);
 });
 
@@ -120,6 +127,7 @@ function hideAllScreens() {
     letterScreen.classList.remove('active');
     levelScreen.classList.remove('active');
     levelPhotoScreen.classList.remove('active');
+    finalLetterScreen.classList.remove('active');
     endScreen.classList.remove('active');
     gameoverScreen.classList.remove('active');
 }
@@ -137,7 +145,7 @@ function updateNavButtons() {
 
     // Botón Siguiente
     // No puede avanzar si está en el paso máximo desbloqueado (tiene que pasar la prueba)
-    if ((currentStep >= maxStepUnlocked && currentStep !== 0) || currentStep >= 6) {
+    if ((currentStep >= maxStepUnlocked && currentStep !== 0 && currentStep !== 6) || currentStep >= 7) {
         btnNext.disabled = true;
     } else {
         btnNext.disabled = false;
@@ -183,6 +191,9 @@ function goToStep(step) {
             levelScreen.classList.add('active');
             break;
         case 6:
+            finalLetterScreen.classList.add('active');
+            break;
+        case 7:
             endScreen.classList.add('active');
             break;
     }
