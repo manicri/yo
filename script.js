@@ -72,10 +72,15 @@ const livesHearts = document.getElementById('lives-hearts');
 const navContainer = document.getElementById('nav-container');
 const btnBack = document.getElementById('btn-back');
 const btnNext = document.getElementById('btn-next');
+const volumeSlider = document.getElementById('volume-slider');
 
 // Eventos
+volumeSlider.addEventListener('input', (e) => {
+    bgMusic.volume = e.target.value;
+});
+
 startBtn.addEventListener('click', () => {
-    bgMusic.volume = 0.4;
+    bgMusic.volume = volumeSlider.value;
     bgMusic.play().catch(e => console.log("Música bloqueada por el navegador."));
     goToStep(0);
 });

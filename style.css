@@ -418,6 +418,15 @@ button#start-btn:active, button#restart-btn:active {
         font-size: 13px;
     }
 
+    #volume-control {
+        bottom: 7px;
+        right: 12px;
+        padding: 5px 10px;
+    }
+    #volume-slider {
+        width: 70px;
+    }
+
     .option-btn {
         padding: 11px;
         font-size: 15px;
@@ -443,4 +452,26 @@ button#start-btn:active, button#restart-btn:active {
     color: #aaa;
     border-color: #ddd;
     box-shadow: none;
+}
+
+/* --- CONTROL DE VOLUMEN --- */
+#volume-control {
+    position: fixed;
+    bottom: 12px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 2px solid #FFE169;
+    box-shadow: 0 4px 10px rgba(244, 124, 152, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+}
+
+#volume-slider {
+    cursor: pointer;
+    width: 100px;
+    accent-color: #F47C98;
 }
